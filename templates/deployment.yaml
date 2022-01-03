@@ -34,8 +34,8 @@ spec:
           volumeMounts:
             - name: strapi-volume-claim
               mountPath: /srv/app
-          ports:
-            - containerPort: 1337
+#           ports:
+#             - containerPort: 1337
           env:
             - name: PORT
               value: "{{.Values.container.port}}"
