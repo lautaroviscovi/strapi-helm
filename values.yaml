@@ -20,22 +20,18 @@ nfs:
 proxy:
   enabled: true
   ssl: true
-  domain: "next-api.dev.zenda.la"
+  domain: "strapi.default.com"
   port: 443
 
 #RDS or similar can be used here obviously.  Look at strapi's docs for more options: 
-# #https://strapi.io/documentation/3.0.0-beta.x/concepts/configurations.html#database
-# db:
-#   client: mysql
-#   host: "localhost"
-#   name: strapi
-#   pass: "strapi-sql-pass"
+#https://strapi.io/documentation/3.0.0-beta.x/concepts/configurations.html#database
+db:
+  client: mysql
+  host: zndl.ccxbgimihfv2.us-east-2.rds.amazonaws.com
+  name: cms_zendala
+  pass: "DTe#269po3bwbmzeKmFZGYsyx"
 #   port: "3306"
-#   username: strapi
-
-doppler:
-  token:
-  env:
+  username: root
 
 #Registry credentials might be required if you have a private registry: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: 
@@ -68,6 +64,7 @@ service:
   type: LoadBalancer
   port: 1337
 
+#Make sure to set your host
 ingress:
   enabled: true
   className: ""
@@ -78,7 +75,7 @@ ingress:
   hosts:
     - host: next-api.dev.zenda.la
       paths:
-        - path: /strapi(/|$)(.*)
+        - path: /cms(/|$)(.*)
           pathType: Prefix
   tls:
   - hosts:
@@ -97,12 +94,6 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  
 nodeSelector: {}
 
 tolerations: []
