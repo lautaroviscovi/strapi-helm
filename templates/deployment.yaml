@@ -37,7 +37,7 @@ spec:
           ports:
             - containerPort: 1337
           env:
-           - name: PORT
+            - name: PORT
               value: "{{.Values.container.port}}"
             - name: DOPPLER_TOKEN
               value: {{.Values.doppler.token}}
