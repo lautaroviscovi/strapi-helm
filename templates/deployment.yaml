@@ -37,13 +37,26 @@ spec:
           ports:
             - containerPort: 1337
           env:
-            - name: DOPPLER_TOKEN
-              value: {{.Values.doppler.token}}
-            - name: ENV
-              value: {{.Values.doppler.env}}
-{{- if .Values.extraEnvs }}
-{{ toYaml .Values.extraEnvs | indent 10 }}
-{{- end }}
+            - name: DATABASE_CLIENT
+              value: "{{.Values.db.client}}"
+            - name: DATABASE_HOST
+              value: "{{.Values.db.host}}"
+            - name: DATABASE_NAME
+              value: "{{.Values.db.name}}"
+            - name: DATABASE_PASSWORD
+              value: "{{.Values.db.pass}}"
+#             - name: DATABASE_PORT
+#               value: "{{.Values.db.port}}"
+            - name: DATABASE_USERNAME
+              value: "{{.Values.db.username}}"
+            - name: PROXY_ENABLED
+              value: "{{.Values.proxy.enabled}}"
+            - name: PROXY_SSL
+              value: "{{.Values.proxy.ssl}}"
+            - name: PROXY_DOMAIN
+              value: "{{.Values.proxy.domain}}"
+            - name: PROXY_PORT
+              value: "{{.Values.proxy.port}}"
           # livenessProbe:
           #   httpGet:
           #     path: /
